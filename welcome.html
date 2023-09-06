@@ -1,0 +1,485 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Production Simulation</title>
+    <style>
+        /* Your CSS styles here */
+        /* ... (existing CSS rules) ... */
+
+        /* Additional styles for the welcome page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #FFB6C1, #87CEEB);
+
+        }
+
+        @keyframes floatingAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #welcomePage {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            animation: floatingAnimation 2s infinite ease-in-out alternate;
+            text-align: center;
+        }
+
+        #welcomePage h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        #welcomePage p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #FFB6C1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="languageSelection">
+        <p>Please select your preferred language:</p>
+        <button id="urduButton">Urdu</button>
+        <button id="englishButton">English</button>
+    </div>
+        <h2>Welcome to Production Simulation</h2>
+        <p>Get ready to simulate your production process and calculate key metrics.</p>
+        
+        <a href="step1.html"><button>Start Simulation</button></a>
+    </div>
+
+    <script>
+        // Language selection prompt
+        const languageSelectionDiv = document.getElementById("languageSelection");
+        const contentDiv = document.getElementById("content");
+        const urduButton = document.getElementById("urduButton");
+        const englishButton = document.getElementById("englishButton");
+
+        urduButton.addEventListener("click", () => {
+            setLanguagePreference("urdu");
+            showContent("urdu");
+        });
+
+        englishButton.addEventListener("click", () => {
+            setLanguagePreference("english");
+            showContent("english");
+        });
+
+        // Store language preference
+        function setLanguagePreference(language) {
+            localStorage.setItem("language", language);
+        }
+
+        // Show content based on language preference
+        function showContent(language) {
+            languageSelectionDiv.style.display = "none";
+            contentDiv.style.display = "block";
+
+            if (language === "urdu") {
+                <div id="welcomePage">
+                  <h2>Welcome </h2>
+                   <p>Get ready to simulate your production process and calculate key metrics.</p>
+        
+                    <a href="step1.html"><button>Start Simulation</button></a>
+                  </div>
+               
+           
+            } else {
+                <div id="welcomePage">
+                  <h2>Welcome to Production Simulation</h2>
+                   <p>Get ready to simulate your production process and calculate key metrics.</p>
+        
+                    <a href="step1.html"><button>Start Simulation</button></a>
+                  </div>
+            }
+        }
+
+        // Check for stored language preference
+        const storedLanguage = localStorage.getItem("language");
+        if (storedLanguage) {
+            showContent(storedLanguage);
+        }
+    </script>
+
+
+    
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Production Simulation</title>
+    <style>
+        /* Your CSS styles here */
+        /* ... (existing CSS rules) ... */
+
+        /* Additional styles for the welcome page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #FFB6C1, #87CEEB);
+
+        }
+
+        @keyframes floatingAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #welcomePage {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            animation: floatingAnimation 2s infinite ease-in-out alternate;
+            text-align: center;
+        }
+
+        #welcomePage h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        #welcomePage p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #FFB6C1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="languageSelection">
+        <p>Please select your preferred language:</p>
+        <button id="urduButton">Urdu</button>
+        <button id="englishButton">English</button>
+    </div>
+    <div id="welcomePage" style="display: none;">
+        <h2>Welcome to Production Simulation</h2>
+        <p>Get ready to simulate your production process and calculate key metrics.</p>
+        
+        <a href="step1.html"><button>Start Simulation</button></a>
+    </div>
+
+    <script>
+        // Language selection prompt
+        const languageSelectionDiv = document.getElementById("languageSelection");
+        const welcomePageDiv = document.getElementById("welcomePage");
+        const urduButton = document.getElementById("urduButton");
+        const englishButton = document.getElementById("englishButton");
+
+        urduButton.addEventListener("click", () => {
+            setLanguagePreference("urdu");
+            showContent("urdu");
+        });
+
+        englishButton.addEventListener("click", () => {
+            setLanguagePreference("english");
+            showContent("english");
+        });
+
+        // Store language preference
+        function setLanguagePreference(language) {
+            localStorage.setItem("language", language);
+        }
+
+        // Show content based on language preference
+        function showContent(language) {
+            languageSelectionDiv.style.display = "none";
+            welcomePageDiv.style.display = "block";
+
+            if (language === "urdu") {
+                welcomePageDiv.querySelector("h2").textContent = "خوش آمدید";
+                welcomePageDiv.querySelector("p").textContent = "آپ کی پروڈکشن کی پروسیس کا مجازی اور کلیدی معیارات حساب کرنے کے لئے تیار ہوں۔";
+                welcomePageDiv.querySelector("button").textContent = "سمولیشن شروع کریں";
+            } else {
+                welcomePageDiv.querySelector("h2").textContent = "Welcome to Production Simulation";
+                welcomePageDiv.querySelector("p").textContent = "Get ready to simulate your production process and calculate key metrics.";
+                welcomePageDiv.querySelector("button").textContent = "Start Simulation";
+            }
+        }
+
+        // Check for stored language preference
+        const storedLanguage = localStorage.getItem("language");
+        if (storedLanguage) {
+            showContent(storedLanguage);
+        }
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Production Simulation</title>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #FFB6C1, #87CEEB);
+
+        }
+
+        @keyframes floatingAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #welcomePage {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            animation: floatingAnimation 2s infinite ease-in-out alternate;
+            text-align: center;
+        }
+
+        #welcomePage h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        #welcomePage p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #FFB6C1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+*/
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #FFB6C1, #87CEEB);
+        }
+
+        @keyframes floatingAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .language-selection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            animation: floatingAnimation 2s infinite ease-in-out alternate;
+            text-align: center;
+        }
+
+        .language-selection-container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .language-selection-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-button {
+            padding: 12px;
+            background-color: #FFB6C1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .language-button:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="language-selection-container" id="languageSelection">
+        <p>Please select your preferred language:</p>
+        <div class="language-selection-buttons">
+            <button class="language-button" id="urduButton">Urdu</button>
+            <button class="language-button" id="englishButton">English</button>
+        </div>
+    </div>
+    <!-- Welcome Page -->
+    <div class="language-selection-container" id="welcomePage" style="display: none;">
+        <h2 id="welcomeTitle"></h2>
+        <p id="welcomeText"></p>
+        
+        <a href="step1.html"><button>Start Simulation</button></a>
+        <button id="backButton">Back</button>
+    </div>
+
+    <script>
+        // Language selection prompt
+        const languageSelectionDiv = document.getElementById("languageSelection");
+        const welcomePageDiv = document.getElementById("welcomePage");
+        const urduButton = document.getElementById("urduButton");
+        const englishButton = document.getElementById("englishButton");
+        const welcomeTitle = document.getElementById("welcomeTitle");
+        const welcomeText = document.getElementById("welcomeText");
+        const backButton = document.getElementById("backButton");
+
+        urduButton.addEventListener("click", () => {
+            setLanguagePreference("urdu");
+            showContent("urdu");
+        });
+
+        englishButton.addEventListener("click", () => {
+            setLanguagePreference("english");
+            showContent("english");
+        });
+
+        backButton.addEventListener("click", () => {
+            showLanguageSelection();
+        });
+
+        // Store language preference
+        function setLanguagePreference(language) {
+            localStorage.setItem("language", language);
+        }
+
+        // Show language selection
+        function showLanguageSelection() {
+            languageSelectionDiv.style.display = "flex";
+            welcomePageDiv.style.display = "none";
+        }
+
+        // Show content based on language preference
+        function showContent(language) {
+            languageSelectionDiv.style.display = "none";
+            welcomePageDiv.style.display = "flex";
+
+            if (language === "urdu") {
+                welcomeTitle.textContent = "خوش آمدید";
+                welcomeText.textContent = "آپ کی پروڈکشن کی پروسیس کا مجازی اور کلیدی معیارات حساب کرنے کے لئے تیار ہوں۔";
+            } else {
+                welcomeTitle.textContent = "Welcome to Production Simulation";
+                welcomeText.textContent = "Get ready to simulate your production process and calculate key metrics.";
+            }
+        }
+
+        // Check for stored language preference
+        const storedLanguage = localStorage.getItem("language");
+        if (storedLanguage) {
+            showContent(storedLanguage);
+        } else {
+            showLanguageSelection();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Step 1 - Production Simulation</title>
+    <style>
+           body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Specific styles for Step 1 page */
+        #step1Page {
+            background-color: #f5f5f5;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 1s;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #step1Page h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #FFB6C1; /* Highlight color */
+        }
+
+        #step1Page p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #completeForm {
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        button#continueButton {
+            padding: 12px;
+            background-color: #87CEEB; /* Highlight color */
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button#continueButton:hover {
+            background-color: #FF69B4;
+            transform: scale(1.05);
+        }
+
+        /* Background animation */
+        body:before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #FFB6C1, black);
+            animation: backgroundAnimation 10s linear infinite;
+        }
+
+        #goBackLink {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+</style>
+</head>
+<body>
+<!-- Step 1 Page -->
+<div id="step1Page">
+    <a href="welcome.html" id="goBackLink">Go back to Welcome Page<br>خوش آمدید صفحہ پر واپس جائیں۔</a>
+
+    <form id="completeForm">
+        <h2>1- Enter Raw Material Stock <br>      خام مال کا اسٹاک درج کریں۔</h2>
+        <label for="rawMaterialStockInput">Enter your total raw material stock In KG:<br> میں اپنے خام مال کا کل ذخیرہ درج کریں KG</label>
+        <input type="number" id="rawMaterialStockInput" required>
+
+        <h2>2- Enter Shift Days<br>شفٹ کے دن درج کریں۔</h2>
+        <label for="shiftDaysInput">Enter your Total Days of shift:<br>اپنے شفٹ کے کل دن درج کریں۔</label>
+        <input type="number" id="shiftDaysInput" required>
+
+        <h2>3- Enter Shift Timings<br>شفٹ کے اوقات درج کریں۔</h2>
+        <label for="shiftTimingsInput">In hours:<br>گھنٹوں میں</label>
+        <input type="number" id="shiftTimingsInput" required>
+
+        <h2>4- Enter Break Time<br>وقفے کا وقت درج کریں۔</h2>
+        <label for="breakTimeInput">Enter break time for the shift in minutes:<br>منٹوں میں شفٹ کے لیے وقفہ کا وقت درج کریں:</label>
+        <input type="number" id="breakTimeInput" required>
+
+        <h2>5- Enter Number of Processes<br>عمل کی تعداد درج کریں۔</h2>
+        <label for="numberOfProcessesInput"></label>
+        <input type="number" id="numberOfProcessesInput" required>
+
+        <h2>6- Enter Customer Demand<br>کسٹمر ڈیمانڈ درج کریں۔</h2>
+        <label for="customerDemandInput"></label>
+        <input type="number" id="customerDemandInput" required>
+
+        <h2>7- Enter Available Days<br>دستیاب دن درج کریں۔ </h2>
+        <label for="daysNeededInput">In how many days you need to fulfil this demand?<br>آپ کو یہ مطالبہ کتنے دنوں میں پورا کرنا ہے؟</label>
+        <input type="number" id="daysNeededInput" required>
+        
+        <button type="button" id="continueButton">Continue<br>جاری رہے؟</button>
+        
+        
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const completeForm = document.getElementById("completeForm");
+        const continueButton = document.getElementById("continueButton");
+
+        // Trigger "Continue" button click on Enter key press
+        completeForm.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                continueButton.click();
+            }
+        });
+
+        continueButton.addEventListener("click", function() {
+            const rawMaterialStockInput = document.getElementById("rawMaterialStockInput").value;
+            const shiftDaysInput = document.getElementById("shiftDaysInput").value;
+            const shiftTimingsInput = document.getElementById("shiftTimingsInput").value;
+            
+            if (rawMaterialStockInput === "" || rawMaterialStockInput < 0) {
+                alert("Please enter a valid non-negative value for raw material stock.");
+                return;
+            }
+            
+            if (shiftDaysInput <= 0) {
+                alert("Please enter a valid value for shift days.");
+                return;
+            }
+            
+            if (shiftTimingsInput <= 0 || shiftTimingsInput > 24) {
+                alert("Please enter a valid value for shift timings (between 1 and 24 hours).");
+                return;
+            }
+
+            const customerDemandInput = document.getElementById("customerDemandInput").value;
+            const daysNeededInput = document.getElementById("daysNeededInput").value;
+            
+            if (customerDemandInput <= 0) {
+                alert("Please enter a valid value for customer demand.");
+                return;
+            }
+            
+            if (daysNeededInput <= 0) {
+                alert("Please enter a valid value for days needed.");
+                return;
+            }
+            const queryString = `stock=${rawMaterialStockInput}&shiftDays=${shiftDaysInput}&shiftTimings=${shiftTimingsInput}&customerDemand=${customerDemandInput}&daysNeeded=${daysNeededInput}`;
+            window.location.href = `process customization 7b.html?${queryString}`;
+
+
+        });
+    });
+    // After production simulation is complete
+// Construct the URL with query parameters
+const queryString = `shiftDays=${shiftDays}&shiftTimings=${shiftTimings}&breaktime1=${breaktime1}&ct=${ct}&numberofprocess=${numberofprocess}&name=${name}&numberofworkers=${numberofworkers}&batchsize=${batchsize}&weightUnit=${weightUnit}&weightperpart=${weightperpart}&vaTime=${vaTime}&nvaTime=${nvaTime}&customerDemand=${customerDemand}&scrap=${scrap}&scrapUnit=${scrapUnit}&n=${n}`;
+const processCustomizationURL = `process customization 7b.html?${queryString}`;
+
+// Redirect to process_customization_7b.html
+window.location.href = processCustomizationURL;
+
+</script>
+</body>
+</html>

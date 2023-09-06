@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Production Simulation - In Between</title>
+    <style>
+        /* Include your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #FFB6C1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+        
+        button#continueButton {
+            padding: 12px;
+            background-color: #87CEEB; /* Highlight color */
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button#continueButton:hover {
+            background-color: #FF69B4;
+            transform: scale(1.05);
+        }
+
+        /* Background animation */
+        body:before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 100;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #FFB6C1, white);
+            animation: backgroundAnimation 10s linear infinite;
+        }
+        #goBackLink {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+}
+
+        @keyframes backgroundAnimation {
+            0% {
+                transform: translate(50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1><a href="Thankyou page.html" style="text-decoration: none; color: black;">Production Simulation:  پیداوار کا تخروپن</a></h1>
+
+    <div class="container">
+        <h2>Do you want to continue? <br>کیا آپ جاری رکھنا چاہتے ہیں؟</h2>
+        <p id="partsProduced"></p>
+        <p id="remainingMaterial"></p>
+        <!-- ... other output paragraphs ... -->
+        <button id="shiftToInventoryButton" style="display: none;">Shift Parts to Inventory<br>حصوں کو انوینٹری میں شفٹ کریں۔</button>
+        <button id="continueButton">Continue</button>
+        <button id="goBackButton" onclick="goToThankyoupage()">Let's End <br>ختم کرنا چاہتے ہیں؟</button>
+    </div>
+    <label>
+        <input type="checkbox" id="agreeCheckbox">
+        I agree to place the parts in inventory.
+        <br>
+        میں حصوں کو انوینٹری میں رکھنے پر راضی ہوں۔
+    </label>
+    <div id="inventoryPopup" class="popup">
+        <div class="popup-content">
+            <span id="inventoryMessage">You have placed your parts in inventory. <br> آپ نے اپنے حصے انوینٹری میں رکھے ہیں۔</span>
+            <button id="closePopupButton">Done <br> ہو گیا</button>
+        </div>
+    </div>
+    <button id="placeInInventoryButton">Place in Inventory<br> انوینٹری میں ڈالیں۔</button>
+
+    <script>
+        document.getElementById("continueButton").addEventListener("click", function () {
+     // Redirect to process customization 7b.html
+     window.location.href = 'process customization 7b.html';
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+    // Get the totalPartsProduced value from localStorage
+    const totalPartsProduced = parseInt(localStorage.getItem('totalPartsProduced'));
+
+    // Display the totalPartsProduced value on the page
+    const partsProducedElement = document.getElementById("partsProduced");
+    partsProducedElement.textContent = "Total Parts Produced: " + totalPartsProduced + " parts";
+});
+
+
+        // Retrieve the totalPartsProduced value from localStorage
+        const totalPartsProduced = parseInt(localStorage.getItem('totalPartsProduced'));
+
+        // Display the totalPartsProduced value
+        document.getElementById("partsProduced").textContent = "Parts Produced: " + totalPartsProduced + " parts";
+
+        document.getElementById("continueButton").addEventListener("click", function () {
+            // Redirect to the main form page (moreprocess.html)
+            window.location.href = 'process customization 7b.html';
+        });
+
+        document.getElementById("shiftToInventoryButton").addEventListener("click", function () {
+            // Implement your logic to shift parts to inventory here
+            alert("Parts shifted to inventory!");
+        });
+
+        document.getElementById("goBackButton").addEventListener("click", function () {
+            // Redirect to the welcome page
+            window.location.href = 'Thankyou page.html';
+        });
+
+        // Show the "Shift to Inventory" button if there are parts produced
+        if (totalPartsProduced > 0) {
+            document.getElementById("shiftToInventoryButton").style.display = "block";
+        }
+
+      
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // ...
+
+    const placeInInventoryButton = document.getElementById("placeInInventoryButton");
+    const agreeCheckbox = document.getElementById("agreeCheckbox");
+    const inventoryPopup = document.getElementById("inventoryPopup");
+    const inventoryMessage = document.getElementById("inventoryMessage");
+    const closePopupButton = document.getElementById("closePopupButton");
+
+    placeInInventoryButton.addEventListener("click", function () {
+        if (agreeCheckbox.checked) {
+            inventoryPopup.style.display = "flex"; // Show the popup
+
+            // Update the inventory message
+            inventoryMessage.textContent = `You have placed ${totalPartsProduced} parts in inventory.`;
+        } else {
+            alert("Please confirm your agreement to place the parts in inventory.");
+        }
+    });
+
+    closePopupButton.addEventListener("click", function () {
+        inventoryPopup.style.display = "none"; // Hide the popup
+    });
+});
+
+
+    </script>
+</body>
+
+</html>

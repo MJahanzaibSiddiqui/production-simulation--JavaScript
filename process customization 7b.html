@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Production Simulation</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    overflow: hidden; /* Prevent horizontal scrollbar */
+}
+
+h1 {
+    text-align: left;
+    color: black;
+    margin: 20px 0 0 20px; /* Adjust margins for positioning */
+    position: absolute; /* Position the heading absolutely */
+    top: 0; /* Position from the top of the viewport */
+    left: 0; /* Position from the left of the viewport */
+    animation: fadeInLeft 1s ease-in-out;
+}
+
+h2, p, label {
+    margin: 0;
+    padding: 0;
+}
+form {
+    max-width: 600px;
+    margin: 80px auto 20px; /* Adjust top margin to create space */
+    padding: 20px; /* Add padding for visual separation */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-in-out; /* Add fade-in animation */
+    
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(to bottom right, #FFB6C1, #87CEEB,black);
+}
+
+/* Form styles */
+#productionForm {
+    background-color: rgba(231, 225, 225, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 1s;
+    
+}
+
+label {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #FFB6C1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: black;
+    transform: scale(1.05); /* Add slight scale effect on hover */
+}
+
+/* Output styles */
+#output {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    animation: fadeIn 1s;
+}
+
+#output h2 {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+    from {
+        opacity: 50;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#goToInBetweenButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #FFB6C1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #goToInBetweenButton:hover {
+            background-color: black;
+        }
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 50;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 5;
+        transform: translateY(10);
+    }
+      
+}
+
+
+
+    #upperRightValuesContainer {
+        position: absolute;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        background-color: #FFB6C1;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: white;
+    }
+
+    /* Style individual value divs as needed */
+    #stockDisplay, #numberOfProcessValue {
+        margin-bottom: 5px;
+    }
+</style>
+
+
+
+    </style>
+</head>
+<body>   
+    <h1><a href="welcome.html" style="text-decoration: none; color: black;">Production Simulation: پیداوار کا تخروپن</a></h1>
+  <form id="productionForm">
+        <!-- <label for="shiftDays">Enter the number of days for the shift:</label>
+        <input type="number" id="shiftDays" required>
+        <label for="shiftTimings">Enter the shift timings in hours:</label>
+        <input type="number" id="shiftTimings" required>
+        <label for="breaktime1">Please enter the break time for the shift in minutes:</label>
+        <input type="number" id="breaktime1" required> -->
+        <label for="ct">Enter the cycle time in seconds:<br>سائیکل کا وقت سیکنڈوں میں درج کریں:</label>
+        <input type="number" id="ct" required>
+        <!-- <label for="numberofprocess">Enter The Number of processes:</label>
+        <input type="number" id="numberofprocess" required> -->
+        <label for="name">Please enter the name of the process:<br>براہ کرم عمل کا نام درج کریں:</label>
+        <input type="text" id="name" required>
+        <label for="numberofworkers">Please Enter the Number of workers in this process:<br>براہ کرم اس عمل میں کارکنوں کی تعداد درج کریں:</label>
+        <input type="number" id="numberofworkers" required>
+        <!-- <label for="batchsize">Enter starting input quantity in Kg:<br>کلوگرام میں ابتدائی ان پٹ مقدار درج کریں:</label> -->
+        <!-- <input type="number" id="batchsize" required> -->
+        <label for="scrap">Enter Scrap Quantity (Kg):<br>سکریپ کی مقدار درج کریں (کلوگرام):</label>
+        <input type="number" id="scrap" required>
+        <select id="scrapUnit">
+            <option value="kg">Kg<br> کلوگرام</option>
+            <option value="g">Grams <br>گرام</option>
+        </select>
+        <label for="weightperpart">Enter the weight per part:<br>فی حصہ وزن درج کریں۔</label>
+        <select id="weightUnit">
+            <option value="kg">Kg<br> کلوگرام</option>
+            <option value="g">Grams <br>گرام</option>
+        </select>
+        <input type="number" id="weightperpart" required>
+        <label for="vaTime">Enter Value-Added Time (seconds):<br>ویلیو ایڈڈ ٹائم (سیکنڈ) درج کریں:</label>
+        <input type="number" id="vaTime" required>
+        <label for="nvaTime">Enter Non-Value-Added Time (seconds):<br>غیر ویلیو ایڈڈ ٹائم (سیکنڈ) درج کریں:</label>
+        <input type="number" id="nvaTime" required>
+        <!-- <label for="customerDemand">Enter Customer Demand:<br>کسٹمر ڈیمانڈ درج کریں:</label>
+        <input type="number" id="customerDemand" required> -->
+
+        <label for="n">Does the process have any break? or it's an automated process (yes=1 or no=0):<br>کیا عمل میں کوئی وقفہ ہے؟ یا یہ ایک خودکار عمل ہے (ہاں=1 یا نہیں=0):</label>
+        <input type="number" id="n" required>
+        <!-- <button type="submit">Simulate Production <br>پیداوار کی نقالی</b></button> -->
+
+        <button id="goBackButton" onclick="goToStep1()">Go Back to Step 1<br>مرحلہ 1 پر واپس جائیں۔</button>
+        <!-- <button id="nextButton">Next</button> -->
+        <button id="goToInBetweenButton">Go to Inbetween<br>Inbetween پر جائیں۔</button>
+        <button id="simulateProductionButton" type="button">Simulate Production</button>
+
+
+    </form>
+
+    <div id="output" style="display: none;">
+        <h2>Production Results<br>پیداوار کے نتائج</h2>
+        <p id="partsProduced"></p>
+        <p id="remainingMaterial"></p>
+        <p id="remainingMaterialAfterShift"></p>
+        <p id="cycleTime"></p>
+        <p id="vaTimeOutput"></p>
+        <p id="nvaTimeOutput"></p>
+        <p id="taktTimeOutput"></p> 
+        <p id="totalOutput"></p>
+        <p id="elapsedTime"></p>
+        <p id="potentialParts"></p>
+
+<!-- 
+        <p>Shift Days: <span id="shiftDaysValue"></span></p>
+        <p>Shift Timings: <span id="shiftTimingsValue"></span></p>
+        <p>Break Time: <span id="breakTimeValue"></span> minutes</p> -->
+
+
+
+    </div>
+    <div id="upperRightCorner" style="position: absolute; top: 10px; right: 10px;">
+        <div id="stockDisplay" style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+        <div id="numberOfProcessValue" style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+        <div id="shiftDaysValue" style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+        <div id="shiftTimingsValue" style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+        <div id="breakTimeValue" style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+        <div id="customerDemandValue"style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+        <div id="daysneededValue"style="background-color: #FFB6C1; padding: 5px 10px; border-radius: 5px; color: white;"></div>
+
+    </div>
+        <!-- <button id="goToInBetweenButton">Go to Inbetween</button> -->
+        <button id="addMaterialButton" style="display: none;">Continue</button>
+
+        <button id="addMaterialButton" style="display: none;">Continue</button>
+    <script>
+       // Your complete script here
+ document.getElementById("productionForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    document.getElementById("addMaterialButton").addEventListener("click", function () {
+    window.location.href = "inbetween.html";
+//     document.getElementById("nextButton").addEventListener("click", function () {
+//     window.location.href = "inbetween.html"; // Replace with the actual URL of your inbetween.html file
+// });
+
+});
+
+   // Get input values
+    let shiftDays = parseInt(document.getElementById("shiftDays").value);
+    let shiftTimings = parseFloat(document.getElementById("shiftTimings").value);
+    let breaktime1 = parseFloat(document.getElementById("breaktime1").value);
+    let ct = parseInt(document.getElementById("ct").value);
+    let numberofprocess = parseInt(document.getElementById("numberofprocess").value);
+    let name = document.getElementById("name").value;
+    let numberofworkers = parseInt(document.getElementById("numberofworkers").value);
+    let batchsize = parseFloat(document.getElementById("batchsize").value);
+    let weightUnit = document.getElementById("weightUnit").value;
+    let weightperpart = parseFloat(document.getElementById("weightperpart").value);
+    let vaTime = parseFloat(document.getElementById("vaTime").value);
+    let nvaTime = parseFloat(document.getElementById("nvaTime").value);
+    let customerDemand = parseInt(document.getElementById("customerDemand").value);
+    let availableProductionTime = shiftTimings * 3600 - breaktime1 * 60;
+    let taktTime = availableProductionTime / customerDemand;
+    let scrap = parseFloat(document.getElementById("scrap").value);
+    let scrapUnit = document.getElementById("scrapUnit").value;
+    let totalInputMaterial = batchsize - scrap;
+    let remainingMaterial = totalInputMaterial;
+    // Add validation checks
+if (shiftTimings > 24) {
+    alert("Shift timings cannot be more than 24 hours. شفٹ کے اوقات 24 گھنٹے سے زیادہ نہیں ہو سکتے۔");
+    return;
+}
+if (shiftTimings < 0 || isNaN(shiftTimings)) {
+    alert("Shift timings must be a positive number. شفٹ کے اوقات ایک مثبت نمبر ہونا چاہیے۔");
+    return;
+}
+if (breaktime1 < 0 || isNaN(breaktime1)) {
+    alert("Break time must be a non-negative number. وقفے کا وقت ایک غیر منفی نمبر ہونا چاہیے۔");
+    return;
+}
+if (numberofprocess <= 0 || isNaN(numberofprocess)) {
+    alert("Number of processes must be a positive number greater than zero.  عمل کی تعداد صفر سے زیادہ مثبت نمبر ہونی چاہیے۔");
+    return;
+}
+if (shiftDays < 0 || isNaN(shiftDays)) {
+    alert("Shift Days must be a non-negative number.    عمل کی تعداد صفر سے زیادہ مثبت نمبر");
+    return;
+}
+if (numberofworkers < 0 || isNaN(numberofworkers)) {
+    alert("Number Of workers must be a non-negative number.   کارکنوں کی تعداد ایک غیر منفی نمبر ہونی چاہیے۔");
+    return;
+}
+if (batchsize <= 0 || isNaN(batchsize)) {
+    alert("Input Material must be a non-negative number and Greater than zero for starting the process.  عمل شروع کرنے کے لیے ان پٹ مواد کا ایک غیر منفی نمبر اور صفر سے بڑا ہونا چاہیے۔");
+    return;
+}
+if (ct < 0 || isNaN(numberofworkers)) {
+    alert("Cycle Time must be a non-negative number.  سائیکل کا وقت ایک غیر منفی نمبر ہونا چاہیے۔");
+    return;
+}
+if (scrap < 0 || isNaN(weightperpart)) {
+    alert("Scrap must be a non-negative number:   سکریپ ایک غیر منفی نمبر ہونا چاہیے:");
+    return;
+}
+    // Convert scrap to kg if the unit is in grams
+    if (scrapUnit === "g") {
+        scrap = scrap / 1000;
+    }
+    // Convert weight per part to kg if the unit is in grams
+    if (weightUnit === "g") {
+        weightperpart = weightperpart / 1000;
+    }
+    let n = parseInt(document.getElementById("n").value);
+    // Perform production simulation
+let totalPartsProduced = 0;
+let totalCycles = numberofprocess * numberofworkers;
+let totalCycleTime = totalCycles * ct;
+let potentialPartsProduced = Math.min(totalCycles, (shiftTimings * 3600 / totalCycleTime) * (batchsize / weightperpart));
+let shiftDuration = shiftTimings * 3600;
+let elapsedTime = 0;
+while (elapsedTime < shiftDuration) {
+    let maxPartsProduced = Math.floor(remainingMaterial / weightperpart);
+    let partsProduced = Math.min(totalCycles, maxPartsProduced);
+    totalPartsProduced += partsProduced;
+    remainingMaterial -= partsProduced * weightperpart;
+    let cycleTime = totalCycleTime / totalCycles;
+    elapsedTime += cycleTime;    
+    if (remainingMaterial <= 0) {
+        alert("Material is exhausted for this batch. You have produced " + totalPartsProduced + " parts. Please enter more material for the next batch.");
+        let additionalMaterial = parseFloat(prompt("Enter the additional batch size (in Kg):"));
+        remainingMaterial += additionalMaterial;
+    }
+}
+// Display production results
+let taktTimeValue = availableProductionTime / totalPartsProduced;
+    // Display production results
+    document.getElementById("partsProduced").textContent = "Parts Produced: " + totalPartsProduced + " parts";
+    document.getElementById("remainingMaterial").textContent = "Remaining Material: " + remainingMaterial + " Kg";
+    document.getElementById("cycleTime").textContent = "Cycle Time for this batch: " + (totalCycleTime / totalCycles).toFixed(2) + " seconds";
+    document.getElementById("taktTimeOutput").textContent = "Takt Time: " + taktTimeValue.toFixed(2) + " seconds per unit"; // Display Takt Time
+    document.getElementById("vaTimeOutput").textContent = "Value-Added Time: " + vaTime + " seconds"; // Display Value-Added Time
+    document.getElementById("nvaTimeOutput").textContent = "Non-Value-Added Time: " + nvaTime + " seconds"; // Display Non-Value-Added Time
+    document.getElementById("totalOutput").textContent = "Total output or Parts Produced: " + totalPartsProduced + " parts";
+    document.getElementById("elapsedTime").textContent = "Elapsed Time in Shift: " + elapsedTime.toFixed(2) + " seconds";
+    document.getElementById("potentialParts").textContent = "Potential Parts Produced (assuming no loss time and value-added time): " + potentialPartsProduced.toFixed(2) + " parts";
+
+    if (remainingMaterial <= 0) {
+        let additionalMaterial = parseFloat(prompt("Enter the additional batch size (in Kg):"));
+        if (additionalMaterial > stockValue) {
+        alert("Cannot add more material than the total raw material stock.");
+        return;
+    }
+            remainingMaterial += additionalMaterial;
+            alert("You have added " + additionalMaterial + " Kg of material. Continue production.")};
+           // Continue the production simulation
+     while (remainingMaterial > 0 && elapsedTime < shiftDuration) {
+    let maxPartsProduced = Math.floor(remainingMaterial / weightperpart);
+    let partsProduced = Math.min(totalCycles, maxPartsProduced);
+    totalPartsProduced += partsProduced;
+    remainingMaterial -= partsProduced * weightperpart;
+    let cycleTime = totalCycleTime / totalCycles;
+    elapsedTime += partsProduced * cycleTime;
+    localStorage.setItem('totalPartsProduced', totalPartsProduced);
+     window.location.href = 'inbetween.html';
+    if (remainingMaterial <= 0) {
+        alert("Material is exhausted for this batch. You have produced " + totalPartsProduced + " parts. Please enter more material for the next batch.");
+        let additionalMaterial = parseFloat(prompt("Enter the additional batch size (in Kg):"));
+        remainingMaterial += additionalMaterial;
+    }
+}
+// Update the production results after adding more material
+document.getElementById("partsProduced").textContent = "Parts Produced: " + totalPartsProduced + " parts";
+document.getElementById("remainingMaterial").textContent = "Remaining Material: " + remainingMaterial + " Kg";
+document.getElementById("elapsedTime").textContent = "Elapsed Time in Shift: " + elapsedTime + " seconds";
+document.getElementById("output").style.display = "block";
+document.getElementById("addMaterialButton").style.display = remainingMaterial <= 0 ? "none" : "block";
+document.getElementById("addMaterialButton").style.display = remainingMaterial > 0 && remainingMaterial < batchsize ? "block" : "none";
+
+let remainingMaterialAfterShift = remainingMaterial - (totalPartsProduced * weightperpart);
+document.getElementById("remainingMaterialAfterShift").textContent = "Remaining Material After Shift: " + remainingMaterialAfterShift.toFixed(2) + " Kg";
+
+document.getElementById("output").style.display = "block";
+document.getElementById("addMaterialButton").style.display = remainingMaterial > 0 && remainingMaterial < batchsize ? "block" : "none";
+
+// Show the summary if material is exhausted
+if (remainingMaterial <= 0) {
+    document.getElementById("totalOutput").textContent = "Total output or Parts Produced: " + totalPartsProduced + " parts";
+    document.getElementById("potentialParts").textContent = "Potential Parts Produced (assuming no loss time and value-added time): " + potentialPartsProduced + " parts";
+} 
+        });
+    // Display the summary at the end
+document.getElementById("output").style.display = "block";
+document.getElementById("addMaterialButton").style.display = "block";
+document.getElementById("goToInBetweenButton").addEventListener("click", function () {
+ window.location.href = "inbetween.html"; 
+        });
+
+    document.getElementById("goBackButton").addEventListener("click", function () {
+    // Redirect to 'welcome.html' when clicking the button
+    window.location.href = "welcome.html";
+});
+
+document.getElementById("goToInBetweenButton").addEventListener("click", function () {
+    // Redirect to 'inbetween.html' when clicking the button
+    window.location.href = "inbetween.html";
+});
+
+
+
+// document.getElementById("addMaterialButton").style.display = remainingMaterial < batchsize ? "block" : "none";
+    </script>  
+<script>
+    // Retrieve query parameters from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const stockValue = parseFloat(urlParams.get('stock'));
+    const numberOfProcess = urlParams.get('numberofprocess');
+    const shiftDays = urlParams.get('shiftDays');
+    const shiftTimings = urlParams.get('shiftTimings');
+    const breakTime = urlParams.get('breaktime1');
+
+
+    const customerDemand = parseFloat(urlParams.get('customerDemand'));
+    const daysNeeded = parseFloat(urlParams.get('daysNeeded'));
+
+
+    // Display values in the upper right corner
+    const stockDisplay = document.getElementById('stockDisplay');
+    stockDisplay.textContent = `Total Raw Material Stock in inventory-1 : ${stockValue.toFixed(2)} KG`;
+
+    const numberOfProcessValue = document.getElementById('numberOfProcessValue');
+    numberOfProcessValue.textContent = `Number of Processes: ${numberOfProcess}`;
+
+    const shiftDaysValue = document.getElementById('shiftDaysValue');
+    shiftDaysValue.textContent = `Shift Days: ${shiftDays}`;
+
+    const shiftTimingsValue = document.getElementById('shiftTimingsValue');
+    shiftTimingsValue.textContent = `Shift Timings: ${shiftTimings}`;
+
+    const breakTimeValue = document.getElementById('breakTimeValue');
+    breakTimeValue.textContent = `Break Time: ${breakTime} minutes`;
+    
+    const customerDemandValue = document.getElementById('customerDemandValue');
+    customerDemandValue.textContent = `Customer Demand: ${customerDemand}`;
+
+    const daysneededValue = document.getElementById('daysneededValue');
+    daysneededValue.textContent = `Available Days: ${daysNeeded}`;
+
+
+</script>
+</body>
+</html>
